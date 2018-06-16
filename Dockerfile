@@ -190,6 +190,16 @@ RUN mkdir -p /opt/landoop/connectors/third-party/kafka-connect-debezium-{mongodb
            -C  /opt/landoop/connectors/third-party/kafka-connect-debezium-postgres \
     && rm -rf /debezium-{mongodb,mysql,postgres}.tgz
 
+## Kafka Connect BIGQUERY
+ARG KAFKA_CONNECT_BIGQUERY_VERSION=1.1.0
+ARG KAFKA_CONNECT_BIGQUERY_URL="http://search.maven.org/remotecontent?filepath=com/wepay/kcbq/kcbq-connector/${KAFKA_CONNECT_BIGQUERY_VERSION}/kcbq-connector-${KAFKA_CONNECT_BIGQUERY_VERSION}-confluent-dist.tar"
+RUN wget $DEVARCH_USER $DEVARCH_PASS "$KAFKA_CONNECT_BIGQUERY_URL" \
+         -O /opt/kafka-connect-bigquery.tar \
+    && mkdir -p /opt/landoop/connectors/third-party/ \
+    && tar --no-same-owner -xvf /opt/kafka-connect-bigquery.tar \
+           -C /opt/landoop/connectors/third-party/ \
+    && rm -rf /opt/kafka-connect-bigquery.tar
+    
 ############
 # Add tools/
 ############
