@@ -51,6 +51,7 @@ RUN wget "${STREAM_REACTOR_URL}" -O stream-reactor.tar.gz \
     && mv /elasticsearch-2.4.1/lib/*.jar /opt/connectors/kafka-connect-elastic/ \
     && rm -rf /elasticsearch-2.4.1* \
     && wget http://central.maven.org/maven2/org/apache/activemq/activemq-all/5.15.2/activemq-all-5.15.2.jar -P /opt/connectors/kafka-connect-jms \
+    && wget http://search.maven.org/remotecontent?filepath=com/wepay/kcbq/kcbq-connector/1.1.0/kcbq-connector-1.1.0.jar -P /opt/connectors/kafka-connect-bigquery \    
     && echo "plugin.path=/opt/confluent/share/java,/opt/connectors,/extra-connect-jars,/connectors" >> /opt/confluent/etc/schema-registry/connect-avro-distributed.properties
 
 # Add glibc (for Lenses branch, for HDFS connector etc as some java libs need some functions provided by glibc)
